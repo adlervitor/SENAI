@@ -1,6 +1,6 @@
 //Adler Vitor Santiago Barbosa & Philipp Yuri Nunes
 
-// Blibiotecas
+// Bibliotecas
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -10,7 +10,6 @@ using namespace std;
 // Função que gera letras aleatórias
 char* gerarLetraAleatoria(char alfabeto[], int numeroLetras){  
     char* letrasAleatorias = new char [numeroLetras - 1];
-    
     srand(time(0)); 
 
     for(int i = 0; i < numeroLetras; i++){
@@ -22,6 +21,7 @@ char* gerarLetraAleatoria(char alfabeto[], int numeroLetras){
 // Função que verifica se a letra digitada tem no alfabeto
 bool verificarLetraAlfabeto(char alfabeto[], char letra, size_t tamanho){
     bool contem = false;
+
     for(size_t i = 0; i < tamanho; i++){
         if(letra == alfabeto[i]){
             contem = true;
@@ -30,7 +30,7 @@ bool verificarLetraAlfabeto(char alfabeto[], char letra, size_t tamanho){
     }
     return contem;
 }
-// Função que verifica se as vogais da lista
+// Função que verifica quantas vogais existe na lista
 int ehVogal(char letras[], int numeroLetras){
     char vogais[] = {"AEIOUaeiou"};
     int qtdVogais = 0;
@@ -51,7 +51,6 @@ int main() {
     SetConsoleOutputCP(CP_UTF8); 
 
     char alfabeto[] = {"abcdefghijklmnopqrstuvxwyz"};
-
     char letraUsuario;
     int tamanhoAlfabeto = sizeof(alfabeto) - 1;
     int opcao = 0;
@@ -63,19 +62,18 @@ int main() {
         int numeroDeLetras = 0;
         cout << "Digite a quantidade de letras a serem adivinhadas: " << endl;
         cin >> numeroDeLetras;
+
         char* letraAleatoria = gerarLetraAleatoria(alfabeto, numeroDeLetras);
         int tentativas = 0;
         bool ganhou = false;
         
         while (tentativas < 5 && ganhou == false){
-
             cout << "Digite uma letra do alfabeto (A-Z): " << endl;
             cin >> letraUsuario;
-
             letraUsuario = char(tolower(letraUsuario));
-
+            // Verifica se a letra existe no alfabeto
             if (verificarLetraAlfabeto(alfabeto, letraUsuario, tamanhoAlfabeto)){
-
+                // Verifica se a letra digitada pelo usuário está certa
                 for(size_t i = 0; i < sizeof(letraAleatoria); i++){
                     if(letraUsuario == letraAleatoria[i]){
                         ganhou = true;
@@ -87,18 +85,22 @@ int main() {
                     cout << "Você errou!" << endl;
                     cout << "A lista de letras possuem: " << ehVogal(letraAleatoria, numeroDeLetras) << " vogais." << endl;
                 }
-
             } else {
                 cout << "Letra não existe no alfabeto." << endl;
             }
 
             tentativas++;
 
-            }
+        }
 
         if(ganhou){
-            cout << "Você acertou em " << tentativas << " tentivas, parabéns!" << endl;
+            cout << "Você acertou em " << tentativas << " tentativas, parabéns!" << endl;
+            cout << "As letras secretas eram: " << endl;
+            for(size_t i = 0; i < sizeof(letraAleatoria); i++){
+                cout << letraAleatoria[i] << endl;
+            }
             acertos++;
+
         } else {
             cout << "Você perdeu, as letras secretas eram: " << endl;
             for(size_t i = 0; i < sizeof(letraAleatoria); i++){
@@ -114,5 +116,4 @@ int main() {
     cout << "Você acertou " << acertos << " vezes e errou " << erros << " vezes." << endl;
     
     return 0;
-
 }
