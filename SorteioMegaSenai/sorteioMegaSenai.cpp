@@ -104,7 +104,7 @@ int main() {
         cout << "Digite qualquer número para continuar ou -1 para sair." << endl;
         cin >> opcaoDoUsuario;
         opcaoDoUsuario != -1 ? cout << "O jogo continua!\n" << endl : cout << "O jogo acabou\n" << endl; 
-
+        // Limpa o console input
         cin.clear();
         fflush(stdin);
     }
@@ -119,7 +119,6 @@ int main() {
         }
     }
     
-
     return 0;
 }
 
