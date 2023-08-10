@@ -46,13 +46,13 @@ int main() {
     int tentativas = 0;
 
     cout << "============= Bem-vindo ao MEGA-SENAI! =============" << endl;
-    cout << "Para vencer acerte os 6 números gerados pelo programa!" << endl;
+    cout << "Para vencer acerte os 6 números gerados pelo programa!\n" << endl;
     // Loop principal do jogo
     while(opcaoDoUsuario != -1) {
         // Vetor que armazena os números digitados pelo usuário
         vector<int> numerosUsuario, numerosAcertos;
 
-        cout << "\nDigite 6 números inteiros entre 1 e 60: " << endl;
+        cout << "Digite 6 números inteiros entre 1 e 60: " << endl;
         // While que roda até o vetor numerosUsuario tiver 6 números
         while(numerosUsuario.size() != 6) {
 
@@ -103,7 +103,10 @@ int main() {
         
         cout << "Digite qualquer número para continuar ou -1 para sair." << endl;
         cin >> opcaoDoUsuario;
+        opcaoDoUsuario != -1 ? cout << "O jogo continua!\n" << endl : cout << "O jogo acabou\n" << endl; 
 
+        cin.clear();
+        fflush(stdin);
     }
 
     cout << "Obrigado por participar do MEGA-SENAI!" << endl;
@@ -115,6 +118,7 @@ int main() {
             cout << "  ";
         }
     }
+    
 
     return 0;
 }
