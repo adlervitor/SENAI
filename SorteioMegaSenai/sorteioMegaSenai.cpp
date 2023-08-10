@@ -1,5 +1,4 @@
 // ADLER VITOR SANTIAGO BARBOSA & PHILIPP YURI NUNES
-
 // Bibliotecas
 #include <iostream>
 #include <cstdlib>
@@ -10,12 +9,10 @@
 using namespace std;
 // Função que gera um vetor de 6 números aleatórios
 vector<int> geradorDeNumeros() {
-
     srand(time(0));
     vector<int> numerosSorteados;
 
-
-    while(numerosSorteados.size() != 6){
+    while(numerosSorteados.size() != 6) {
         int novoNumero = rand() % 60 + 1;
         bool jaExiste = false;
         for(size_t i = 0; i < numerosSorteados.size(); i++){
@@ -31,7 +28,7 @@ vector<int> geradorDeNumeros() {
     return numerosSorteados;
 }
 // Função que verifica se o usuário já digitou o número
-bool jaDigitou(vector<int> numeros, int num){
+bool jaDigitou(vector<int> numeros, int num) {
     for(size_t i = 0; i < numeros.size(); i++) {
         if(num == numeros[i]){
             return true;
@@ -43,25 +40,25 @@ bool jaDigitou(vector<int> numeros, int num){
 int main() {
     // Conserta a acentuação no console
     SetConsoleOutputCP(CP_UTF8);
-
-    int opcaoDoUsuario = 0;
     // Cria o vetor de números aleatórios
     vector<int> numerosSorteados = geradorDeNumeros();
+    int opcaoDoUsuario = 0;
+    int tentativas = 0;
 
     cout << "============= Bem-vindo ao MEGA-SENAI! =============" << endl;
+    cout << "Para vencer acerte os 6 números gerados pelo programa!" << endl;
     // Loop principal do jogo
     while(opcaoDoUsuario != -1) {
         // Vetor que armazena os números digitados pelo usuário
-        vector<int> numerosUsuario;
-        cout << "Digite 6 números inteiros entre 1 e 60: " << endl;
+        vector<int> numerosUsuario, numerosAcertos;
 
-        int tentativas = 0;
+        cout << "\nDigite 6 números inteiros entre 1 e 60: " << endl;
         // While que roda até o vetor numerosUsuario tiver 6 números
         while(numerosUsuario.size() != 6) {
 
             int num;
             cin >> num;
-
+            // Valida o input do usuário
             while (cin.fail()) {
                 cout << "Não é um número válido. Por favor, insira um número inteiro positivo." << endl;
                 cin.clear();  // Limpa o estado de erro
@@ -77,7 +74,6 @@ int main() {
             } else {
                 cout << "Número inválido." << endl;
             }
-
         }
         // Verifica os acertos, comparando o vetor de números do usuário com o vetor de números sorteados
         int acertos = 0;
@@ -85,6 +81,7 @@ int main() {
             for(int j = 0; j <= 6; j++){
                 if(numerosUsuario[j] == numerosSorteados[i]){
                     acertos++;
+                    numerosAcertos.push_back(numerosUsuario[j]);
                     break;
                 }
             }
@@ -93,17 +90,20 @@ int main() {
         tentativas++; 
 
         if(acertos == 6) {
-            cout << "Parabéns! Você venceu em " << tentativas << " tentativa(s)!" << endl;
-
+            cout << "Parabéns! Você venceu em " << tentativas << " tentativa(s) e ganhou absolutamente NADA!!!" << endl;
         } else if (acertos > 0) {
-            cout << "Você já acertou: " << acertos << " número(s): " << endl;
+            // Mostra a quantidade de acertos e os números acertados pelo usuário
+            cout << "Você acertou " << acertos << " número(s): " << endl;
+            for(size_t i = 0; i < numerosAcertos.size(); i++) {
+                cout << numerosAcertos[i] << endl;
+            }
         } else {
             cout << "Você não acertou nenhum número." << endl;
         }
         
-        cout << "Digite qualquer coisa para continuar ou -1 para sair." << endl;
+        cout << "Digite qualquer número para continuar ou -1 para sair." << endl;
         cin >> opcaoDoUsuario;
-   
+
     }
 
     cout << "Obrigado por participar do MEGA-SENAI!" << endl;
@@ -115,9 +115,7 @@ int main() {
             cout << "  ";
         }
     }
-    cout << endl;
 
     return 0;
-
 }
 
