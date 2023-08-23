@@ -246,7 +246,7 @@ int main() {
             cout << "\033[1;31mOpção inválida.\033[0m" << endl;
         }
     }
-    
+    // Exibição do resultado
     cout << "Fim do questionário!" << endl;
     string vencedor = determinarGrupoVencedor(pontuacao1, pontuacao2, pontuacao3);
     cout << "\n\033[1m             Resultado: " << vencedor << "             \033[0m" << endl;
