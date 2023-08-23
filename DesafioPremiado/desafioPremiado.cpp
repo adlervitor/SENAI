@@ -1,4 +1,5 @@
 //Maria Fernanda, Emilly Rodrigues, Tayna, Daniele, Gustavo Tobias, Gustavo de Oliveira Vital, Pedro Lucas Ponciano, Philipp Yuri, Adler Vitor
+
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -88,7 +89,7 @@ int main() {
             break;
         } else if (grupoNumero >= 1 && grupoNumero <= 4) {
             int acertos = 0;
-
+            // Switch case principal
             switch (grupoNumero) {
             // Questionário do Grupo 1
             case 1:
@@ -152,19 +153,19 @@ int main() {
                 verificadorResposta(respostaCerta1, resposta1, acertos);
 
                 cout << "\033[1m===== Pergunta 2. Variáveis e Tipos de Dados =====\033[1m\n" << endl;
-                cout << "Quais são os três tipos de dados básicos em C++? Se você tem uma variável do tipo int chamada valor, como você poderia convertê-la em um tipo double?\n" << endl;
-                cout << "\033[3;36m[a]\033[0m Tipos de dados: int, double, char. Conversão: double novoValor = static_cast<double>(valor)" << endl;
-                cout << "\033[3;36m[b]\033[0m Tipos de dados: integer, decimal, character. Conversão: novoValor = double(valor)" << endl;
-                cout << "\033[3;36m[c]\033[0m Tipos de dados: int, float, string. Conversão: novoValor = (double) valor" << endl;
-                cout << "\033[3;36m[d]\033[0m Tipos de dados: bool, float, long. Conversão: double novoValor = valor" << endl;
-                respostaCerta2 = 'a';
+                cout << "Quais são os dois tipos de dados básicos em C++?\n" << endl;
+                cout << "\033[3;36m[a]\033[0m Tipos de dados: int e char." << endl;
+                cout << "\033[3;36m[b]\033[0m Tipos de dados: integer e double." << endl;
+                cout << "\033[3;36m[c]\033[0m Tipos de dados: int e float." << endl;
+                cout << "\033[3;36m[d]\033[0m Tipos de dados: double e string." << endl;
+                respostaCerta2 = 'c';
                 resposta2 = receberResposta();
                 verificadorResposta(respostaCerta2, resposta2, acertos);
 
                 cout << "\033[1m===== Pergunta 3. Funções  =====\033[1m\n" << endl;
                 cout << "Qual é a sintaxe correta para declarar uma função em C++?\n" << endl;
                 cout << "\033[3;36m[a]\033[0m funcao principal() " << endl;
-                cout << "\033[3;36m[b]\033[0m int minhaFuncao() " << endl;
+                cout << "\033[3;36m[b]\033[0m tipo_da_funcao minhaFuncao() " << endl;
                 cout << "\033[3;36m[c]\033[0m função : minhaFuncao " << endl;
                 cout << "\033[3;36m[d]\033[0m declarar minhaFuncao; " << endl;
                 respostaCerta3 = 'b';
