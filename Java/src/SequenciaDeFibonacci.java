@@ -1,7 +1,5 @@
 import java.util.Scanner;
-
 public class SequenciaDeFibonacci {
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -11,6 +9,7 @@ public class SequenciaDeFibonacci {
         int fibonacci0 = 0;
         int fibonacci1 = 1;
 
+        // Verifica e printa a sequencia fibonacci á cada loop
         for (int i = 0; i < numero; i++) {
             int fibonacci = fibonacci0 + fibonacci1;
 
