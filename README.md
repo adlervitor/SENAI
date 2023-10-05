@@ -7,6 +7,6 @@ Adler Vitor Santiago B: https://github.com/adlervitor <br/>
 Philipp Yuri Nunes: https://github.com/PhilippBR0
 
 ## 📚 Conteúdo:
-Este repositório contém uma variedade de exercícios em C++. Cada exercício é organizado em um diretório separado de acordo com o nome do projeto.
+Este repositório contém uma variedade de exercícios em C++ e Java. Cada exercício é organizado em um diretório separado de acordo com o nome do projeto.
 
 
