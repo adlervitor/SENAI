@@ -11,10 +11,9 @@ public class MenorDivisor {
         int menorDivisor = 1;
 
         // Atualiza o menor divisor em cada loop
-        for (int i = 1; i <= numero; i++) {
+        for (int i = menorDivisor; i >= numero; i++) {
             if (numero % i == 0) {
                 menorDivisor = i;
-                break;
             }
         }
 

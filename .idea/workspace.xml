@@ -4,24 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="717fdc22-ba5d-4a1b-91f9-432cc90ac392" name="Changes" comment="Exercícios de Java">
-      <change afterPath="$PROJECT_DIR$/Java/src/Dobro.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java/src/Nome.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+    <list default="true" id="bf3b90bd-bafd-494c-b078-0d1eac0b510b" name="Changes" comment="Exercícios Java">
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SENAI.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Java/src/BasicOperations.java" beforeDir="false" afterPath="$PROJECT_DIR$/Java/src/OperacoesBasicas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/src/Dobro.java" beforeDir="false" afterPath="$PROJECT_DIR$/Java/src/DobroTriplo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/src/MaiorDivisor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Java/src/MaiorDivisor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/src/MenorDivisor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Java/src/MenorDivisor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Java/src/Nome.java" beforeDir="false" afterPath="$PROJECT_DIR$/Java/src/NomeNumero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SENAI1.iml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -29,94 +26,45 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 8
-}</component>
-  <component name="ProjectId" id="2WLudAYhbgbzlkzGBWlMO69LreI" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 8
+}]]></component>
+  <component name="ProjectId" id="2WM3XRrMq96M9SUO8LToF5MUPm5" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Adler/IdeaProjects/SENAI1&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Adler\IdeaProjects\SENAI" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Adler\IdeaProjects\SENAI\C++" />
-    </key>
-  </component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="717fdc22-ba5d-4a1b-91f9-432cc90ac392" name="Changes" comment="" />
-      <created>1696524266265</created>
+      <changelist id="bf3b90bd-bafd-494c-b078-0d1eac0b510b" name="Changes" comment="" />
+      <created>1696528661990</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1696524266265</updated>
-      <workItem from="1696524267313" duration="1140000" />
-      <workItem from="1696525656722" duration="9000" />
-      <workItem from="1696525711076" duration="24000" />
-      <workItem from="1696525746835" duration="1313000" />
-      <workItem from="1696528289310" duration="57000" />
-      <workItem from="1696528355383" duration="16000" />
+      <updated>1696528661990</updated>
+      <workItem from="1696528665257" duration="1798000" />
     </task>
-    <task id="LOCAL-00001" summary="Exercícios de Java">
-      <option name="closed" value="true" />
-      <created>1696524468805</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1696524468805</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Exercícios de Java">
-      <option name="closed" value="true" />
-      <created>1696527010022</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1696527010022</updated>
-    </task>
-    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Exercícios de Java" />
     <MESSAGE value="Exercícios Java" />
     <option name="LAST_COMMIT_MESSAGE" value="Exercícios Java" />
   </component>

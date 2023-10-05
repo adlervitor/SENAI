@@ -7,12 +7,11 @@ public class MaiorDivisor {
         System.out.println("Informe um número:");
         int numero = scanner.nextInt();
 
-        int maiorDivisor = numero / 2;
+        int maiorDivisor = 1;
         // Atualiza o maior divisor
-        for (int i = maiorDivisor; i >= 1; i--) {
+        for (int i = maiorDivisor; i <= numero; i++) {
             if (numero % i == 0) {
                 maiorDivisor = i;
-                break;
             }
         }
 
