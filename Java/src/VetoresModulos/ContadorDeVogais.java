@@ -1,5 +1,7 @@
 package VetoresModulos;
 
+import java.util.Scanner;
+
 public class ContadorDeVogais {
 
     public static int contarVogais(String frase) {
@@ -20,11 +22,13 @@ public class ContadorDeVogais {
     }
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
         // Solicita ao usuário uma frase.
-        String frase = System.console().readLine();
+        System.out.println("Digite uma palavra: ");
+        String palavra = scanner.nextLine();
 
         // Conta o número de vogais na frase chamando a função contarVogais.
-        int numeroDeVogais = contarVogais(frase);
+        int numeroDeVogais = contarVogais(palavra);
 
         // Imprime o resultado.
         System.out.println("Número de vogais: " + numeroDeVogais);

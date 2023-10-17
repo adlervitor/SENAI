@@ -1,5 +1,7 @@
 package VetoresModulos;
 
+import java.util.Scanner;
+
 public class EhPrimo {
     public static boolean ehPrimo(int numero) {
         if (numero <= 1) {
@@ -16,7 +18,10 @@ public class EhPrimo {
     }
 
     public static void main(String[] args) {
-        int numero = Integer.parseInt(System.console().readLine());
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Digite um número: ");
+        int numero = scanner.nextInt();
 
         boolean ehPrimo = ehPrimo(numero);
 

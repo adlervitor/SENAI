@@ -1,5 +1,7 @@
 package VetoresModulos;
 
+import java.util.Scanner;
+
 public class EhPalindromo {
 
     public static boolean ehPalindromo(String palavra) {
@@ -17,14 +19,16 @@ public class EhPalindromo {
     }
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
         // Solicita ao usuário uma palavra.
-        String palavra = System.console().readLine();
+        System.out.println("Digite uma palavra: ");
+        String palavra = scanner.nextLine();
 
         // Verifica se a palavra é um palíndromo.
-        boolean ehPalíndromo = ehPalindromo(palavra);
+        boolean palindromo = ehPalindromo(palavra);
 
         // Imprime o resultado.
-        if (ehPalíndromo) {
+        if (palindromo) {
             System.out.println("A palavra é um palíndromo.");
         } else {
             System.out.println("A palavra não é um palíndromo.");

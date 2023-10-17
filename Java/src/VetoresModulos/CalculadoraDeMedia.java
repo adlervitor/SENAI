@@ -1,6 +1,7 @@
 package VetoresModulos;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class CalculadoraDeMedia {
 
@@ -19,9 +20,10 @@ public class CalculadoraDeMedia {
     }
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
         // Solicita ao usuário as notas.
         System.out.println("Digite as notas separadas por espaços: ");
-        String notasStr = System.console().readLine();
+        String notasStr = scanner.nextLine();
 
         // Converte as notas de string para double.
         double[] notas = Arrays.stream(notasStr.split(" "))
