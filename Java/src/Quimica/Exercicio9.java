@@ -9,7 +9,7 @@ public class Exercicio9 {
         double tensao = scanner.nextDouble();
         System.out.print("Entre com a corrente em amperes: ");
         double corrente = scanner.nextDouble();
-
+        // Lógica do cálculo da resistência
         double resistencia = tensao / corrente;
         System.out.println("A resistência é " + resistencia + " ohms.");
     }

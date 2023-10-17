@@ -9,7 +9,7 @@ public class Exercicio8 {
         double distancia = scanner.nextDouble();
         System.out.print("Entre com o tempo gasto em segundos: ");
         double tempo = scanner.nextDouble();
-
+        // Lógica do cálculo da velocidade média
         double velocidadeMedia = distancia / tempo;
         System.out.println("A velocidade média é " + velocidadeMedia + " m/s.");
     }

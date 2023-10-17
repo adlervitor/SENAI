@@ -9,7 +9,7 @@ public class Exercicio10 {
         double tensao = scanner.nextDouble();
         System.out.print("Entre com a resistência em ohms: ");
         double resistencia = scanner.nextDouble();
-
+        // Lógica do cálculo da potência
         double potencia = (tensao * tensao) / resistencia;
         System.out.println("A potência dissipada é " + potencia + " watts.");
     }
