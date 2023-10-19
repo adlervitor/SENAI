@@ -4,7 +4,7 @@ public class ChecadorDeNota {
     public static void main(String[] args) {
         int nota = 85;
 
-
+        // Condicional que verifica as notas
         if (nota >= 90) {
             System.out.println("Exelente!");
         } else if (nota >= 80) {

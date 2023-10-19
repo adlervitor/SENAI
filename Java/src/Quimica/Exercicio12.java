@@ -10,6 +10,7 @@ public class Exercicio12 {
         System.out.print("Entre com a aceleração gravitacional do planeta em m/s²: ");
         double aceleracaoPlaneta = scanner.nextDouble();
 
+        // Lógica para o cálculo do peso
         double peso = massa * aceleracaoPlaneta;
         System.out.println("O peso do objeto no planeta é " + peso + " N (newtons).");
     }

@@ -14,8 +14,9 @@ public class Facil {
 
         System.out.println("Digite outro número: ");
         int numero3 = scanner.nextInt();
-
+        // Soma dos números fornecidos
         int soma = numero1 + numero2 + numero3;
+        // Cálculo da média
         int media = soma / 3;
 
         System.out.println("A soma dos números é: " + soma);

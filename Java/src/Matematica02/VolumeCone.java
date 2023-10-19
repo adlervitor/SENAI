@@ -12,6 +12,7 @@ public class VolumeCone {
         System.out.println("Digite a altura do cone: ");
         double altura = scanner.nextDouble();
 
+        // Lógica para calcular o raio
         double raio = Math.sqrt(3 * volume / (Math.PI * altura));
         System.out.println("O raio da base do cone é: " + raio);
     }

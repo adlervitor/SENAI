@@ -8,6 +8,7 @@ public class Exercicio17 {
         System.out.print("Entre com o número de carbonos na cadeia carbônica: ");
         int numCarbonos = scanner.nextInt();
 
+        // Calcula o número de carbonos primários
         int numCarbonosPrimarios = numCarbonos - 2;
         System.out.println("A cadeia possui " + numCarbonosPrimarios + " carbonos primários.");
     }

@@ -8,6 +8,7 @@ public class EhPrimo {
             return false;
         }
 
+        // Loop que verifica se o número é primo
         for (int i = 2; i * i <= numero; i++) {
             if (numero % i == 0) {
                 return false;
@@ -23,6 +24,7 @@ public class EhPrimo {
         System.out.println("Digite um número: ");
         int numero = scanner.nextInt();
 
+        // Chamando a função que verifica se o número é primo
         boolean ehPrimo = ehPrimo(numero);
 
         if (ehPrimo) {

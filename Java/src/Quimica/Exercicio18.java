@@ -8,6 +8,7 @@ public class Exercicio18 {
         System.out.print("Entre com a fórmula estrutural da molécula (ex. C6H6): ");
         String formulaEstrutural = scanner.nextLine();
 
+        // Condicional que verifica se a formula fornecida contém "C6H6"
         if (formulaEstrutural.contains("C6H6")) {
             System.out.println("A molécula é aromática.");
         } else if (formulaEstrutural.contains("C") && formulaEstrutural.contains("H")) {

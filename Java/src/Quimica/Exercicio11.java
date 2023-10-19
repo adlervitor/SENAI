@@ -10,6 +10,7 @@ public class Exercicio11 {
         System.out.print("Entre com a aceleração desejada em m/s²: ");
         double aceleracao = scanner.nextDouble();
 
+        // Lógica para o cálculo da força
         double forca = massa * aceleracao;
         System.out.println("A força necessária é " + forca + " N (newtons).");
     }

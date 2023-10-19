@@ -12,6 +12,7 @@ public class VolumeCilindro {
         System.out.println("Digite a altura do cilindro: ");
         double altura = scanner.nextDouble();
 
+        // Lógica para calcular o raio
         double raio = Math.sqrt(volume / (Math.PI * altura));
         System.out.println("O raio da base do cilindro é: " + raio + " cm");
     }

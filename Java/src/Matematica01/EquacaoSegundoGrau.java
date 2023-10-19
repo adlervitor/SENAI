@@ -7,7 +7,7 @@ public class EquacaoSegundoGrau {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-
+        // Declara as variáveis que serão utilizadas
         double a, b, c, x1, x2;
 
         System.out.print("Digite o valor de a: ");
@@ -17,6 +17,7 @@ public class EquacaoSegundoGrau {
         System.out.print("Digite o valor de c: ");
         c = scanner.nextDouble();
 
+        // Lógica principal para o cálculo da raiz
         if (a == 0) {
             System.out.println("Esta não é uma equação de segundo grau.");
         } else {

@@ -16,6 +16,7 @@ public class MultiplicacaoSimples {
         System.out.println("Digite o segundo número: ");
         int num2 = scanner.nextInt();
 
+        // Chamando a função de multiplicação simples, fornecendo o num1 e num2 como parâmetros
         int produto = multiplicacaoSimples(num1, num2);
 
         System.out.println("O produto dos números fornecidos é: " + produto);

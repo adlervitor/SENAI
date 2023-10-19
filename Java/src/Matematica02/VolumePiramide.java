@@ -12,6 +12,7 @@ public class VolumePiramide {
         System.out.println("Digite a área da base da pirâmide: ");
         double area = scanner.nextDouble();
 
+        // Lógica para calcular a altura
         double altura = (3 * volume) / area;
         System.out.println("A altura da pirâmide é: " + altura + " cm");
     }

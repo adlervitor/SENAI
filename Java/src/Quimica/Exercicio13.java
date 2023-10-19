@@ -8,6 +8,7 @@ public class Exercicio13 {
         System.out.print("Entre com o comprimento da aresta do cubo em cm: ");
         double aresta = scanner.nextDouble();
 
+        // Lógica para calcular o volume
         double volume = aresta * aresta * aresta;
         System.out.println("O volume do cubo é " + volume + " cm³.");
     }
