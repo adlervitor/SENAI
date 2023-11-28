@@ -1,0 +1,8 @@
+USE senaidb;
+CREATE TABLE pessoas (
+   id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+   nome VARCHAR(255) NOT NULL,
+   idade INT(3) NOT NULL,
+   sexo VARCHAR(1)
+);
+
