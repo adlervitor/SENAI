@@ -1,4 +1,5 @@
 <?php
+//Adler Vitor Santiago B.
 $servername = "localhost";
 $username = "root";
 $password = "1234";
