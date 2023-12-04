@@ -1,5 +1,5 @@
 <?php
-//Adler Vitor Santiago B.
+// Adler Vitor Santiago B.
 $servername = "localhost";
 $username = "root";
 $password = "1234";
@@ -11,34 +11,26 @@ if ($conn->connect_error) {
     die("Conexão falhou: " . $conn->connect_error);
 }
 
-$nome_aluno = "Maria Oliveira";
-$turma_aluno = "Turma A";
+// Inserir dados na tabela alunos
+$sql_alunos = "INSERT INTO alunos (id_aluno, nome, turma) VALUES 
+                (1, 'Lucas', 'A'),
+                (2, 'Julia', 'B')";
 
-$sql_aluno = "INSERT INTO alunos (nome, turma) VALUES ('$nome_aluno', '$turma_aluno')";
+if ($conn->multi_query($sql_alunos) === TRUE) {
+    echo "Dados dos alunos inseridos com sucesso!<br>";
 
-if ($conn->query($sql_aluno) === TRUE) {
-    $id_aluno = $conn->insert_id;
+    // Inserir dados na tabela cursos
+    $sql_cursos = "INSERT INTO cursos (id_curso, nome_curso, instrutor) VALUES 
+                    (1, 'Matemática', 'Professor Carlos'),
+                    (2, 'Ciências', 'Professora Ana')";
 
-    $nome_curso = "Curso de Matemática";
-    $instrutor_curso = "Prof. Silva";
-
-    $sql_curso = "INSERT INTO cursos (nome_curso, instrutor) VALUES ('$nome_curso', '$instrutor_curso')";
-
-    if ($conn->query($sql_curso) === TRUE) {
-        $id_curso = $conn->insert_id;
-
-        $sql_associate_course = "INSERT INTO alunos_cursos (id_aluno, id_curso) VALUES ('$id_aluno', '$id_curso')";
-
-        if ($conn->query($sql_associate_course) === TRUE) {
-            echo "Novo aluno registrado e matriculado no curso com sucesso!";
-        } else {
-            echo "Erro ao matricular aluno no curso: " . $conn->error;
-        }
+    if ($conn->multi_query($sql_cursos) === TRUE) {
+        echo "Dados dos cursos inseridos com sucesso!";
     } else {
-        echo "Erro ao adicionar detalhes do curso: " . $conn->error;
+        echo "Erro ao inserir dados dos cursos: " . $conn->error;
     }
 } else {
-    echo "Erro ao registrar o aluno: " . $conn->error;
+    echo "Erro ao inserir dados dos alunos: " . $conn->error;
 }
 
 $conn->close();

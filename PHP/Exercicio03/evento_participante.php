@@ -1,5 +1,5 @@
 <?php
-//Adler Vitor Santiago B.
+// Adler Vitor Santiago B.
 $servername = "localhost";
 $username = "root";
 $password = "1234";
@@ -11,25 +11,26 @@ if ($conn->connect_error) {
     die("Conexão falhou: " . $conn->connect_error);
 }
 
-$nome_evento = "Evento ABC";
-$data_evento = "2023-12-31";
+// Inserir dados na tabela eventos
+$sql_eventos = "INSERT INTO eventos (id_evento, nome_evento, data) VALUES 
+                (1, 'Conferência de Tecnologia', '2023-12-15'),
+                (2, 'Workshop de Marketing Digital', '2023-11-20')";
 
-$sql_evento = "INSERT INTO eventos (nome_evento, data) VALUES ('$nome_evento', '$data_evento')";
+if ($conn->multi_query($sql_eventos) === TRUE) {
+    echo "Dados dos eventos inseridos com sucesso!<br>";
 
-if ($conn->query($sql_evento) === TRUE) {
-    $id_evento = $conn->insert_id;
+    // Inserir dados na tabela participantes
+    $sql_participantes = "INSERT INTO participantes (id_participante, id_evento, nome_participante) VALUES 
+                        (1, 1, 'Gabriel'),
+                        (2, 2, 'Sofia')";
 
-    $nome_participante = "João Silva";
-
-    $sql_participante = "INSERT INTO participantes (id_evento, nome_participante) VALUES ('$id_evento', '$nome_participante')";
-
-    if ($conn->query($sql_participante) === TRUE) {
-        echo "Novo evento registrado e participante do evento adicionado com sucesso!";
+    if ($conn->multi_query($sql_participantes) === TRUE) {
+        echo "Dados dos participantes inseridos com sucesso!";
     } else {
-        echo "Erro ao adicionar participante ao evento: " . $conn->error;
+        echo "Erro ao inserir dados dos participantes: " . $conn->error;
     }
 } else {
-    echo "Erro ao registrar o evento: " . $conn->error;
+    echo "Erro ao inserir dados dos eventos: " . $conn->error;
 }
 
 $conn->close();

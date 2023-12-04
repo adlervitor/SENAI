@@ -1,5 +1,5 @@
 <?php
-//Adler Vitor Santiago B.
+// Adler Vitor Santiago B.
 $servername = "localhost";
 $username = "root";
 $password = "1234";
@@ -10,26 +10,26 @@ if ($conn->connect_error) {
     die("Conexão falhou: " . $conn->connect_error);
 }
 
-$nome_usuario = "João";
-$email_usuario = "joao@example.com";
+// Inserir dados na tabela usuarios
+$sql_usuarios = "INSERT INTO usuarios (id_usuario, nome, email) VALUES 
+                    (3, 'Eduardo', 'eduardo@example.com'),
+                    (4, 'Laura', 'laura@example.com')";
 
-$sql_usuario = "INSERT INTO usuarios (nome, email) VALUES ('$nome_usuario', '$email_usuario')";
+if ($conn->multi_query($sql_usuarios) === TRUE) {
+    echo "Dados dos usuários inseridos com sucesso!<br>";
 
-if ($conn->query($sql_usuario) === TRUE) {
-    $id_usuario = $conn->insert_id;
+    // Inserir dados na tabela pedidos
+    $sql_pedidos = "INSERT INTO pedidos (id_pedido, id_usuario, produto, quantidade) VALUES 
+                    (3, 3, 'Livro de Ficção', 3),
+                    (4, 4, 'Fones de Ouvido', 1)";
 
-    $produto = "Produto A";
-    $quantidade = 2;
-
-    $sql_pedido = "INSERT INTO pedidos (id_usuario, produto, quantidade) VALUES ('$id_usuario', '$produto', '$quantidade')";
-
-    if ($conn->query($sql_pedido) === TRUE) {
-        echo "Novo usuário e pedido registrados com sucesso!";
+    if ($conn->multi_query($sql_pedidos) === TRUE) {
+        echo "Dados dos pedidos inseridos com sucesso!";
     } else {
-        echo "Erro ao registrar o pedido: " . $conn->error;
+        echo "Erro ao inserir dados dos pedidos: " . $conn->error;
     }
 } else {
-    echo "Erro ao registrar o usuário: " . $conn->error;
+    echo "Erro ao inserir dados dos usuários: " . $conn->error;
 }
 
 $conn->close();

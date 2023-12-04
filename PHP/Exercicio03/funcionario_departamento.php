@@ -1,5 +1,5 @@
 <?php
-//Adler Vitor Santiago B.
+// Adler Vitor Santiago B.
 $servername = "localhost";
 $username = "root";
 $password = "1234";
@@ -11,41 +11,26 @@ if ($conn->connect_error) {
     die("Conexão falhou: " . $conn->connect_error);
 }
 
-$nome_funcionario = "Maria Silva";
-$cargo_funcionario = "Analista";
+// Inserir dados na tabela funcionarios
+$sql_funcionarios = "INSERT INTO funcionarios (id_funcionario, nome, cargo) VALUES 
+                    (1, 'Luiz', 'Analista'),
+                    (2, 'Carla', 'Gerente')";
 
-$sql_funcionario = "INSERT INTO funcionarios (nome, cargo) VALUES ('$nome_funcionario', '$cargo_funcionario')";
+if ($conn->multi_query($sql_funcionarios) === TRUE) {
+    echo "Dados dos funcionários inseridos com sucesso!<br>";
 
-if ($conn->query($sql_funcionario) === TRUE) {
-    $id_funcionario = $conn->insert_id;
+    // Inserir dados na tabela departamentos
+    $sql_departamentos = "INSERT INTO departamentos (id_departamento, nome_departamento) VALUES 
+                        (1, 'TI'),
+                        (2, 'Recursos Humanos')";
 
-    $nome_departamento = "TI";
-
-    $sql_check_department = "SELECT id_departamento FROM departamentos WHERE nome_departamento = '$nome_departamento'";
-    $result_check_department = $conn->query($sql_check_department);
-
-    if ($result_check_department->num_rows > 0) {
-        $row = $result_check_department->fetch_assoc();
-        $id_departamento = $row["id_departamento"];
+    if ($conn->multi_query($sql_departamentos) === TRUE) {
+        echo "Dados dos departamentos inseridos com sucesso!";
     } else {
-        $sql_insert_department = "INSERT INTO departamentos (nome_departamento) VALUES ('$nome_departamento')";
-        if ($conn->query($sql_insert_department) === TRUE) {
-            $id_departamento = $conn->insert_id;
-        } else {
-            echo "Erro ao adicionar novo departamento: " . $conn->error;
-            exit();
-        }
-    }
-
-    $sql_associate_department = "INSERT INTO funcionarios_departamentos (id_funcionario, id_departamento) VALUES ('$id_funcionario', '$id_departamento')";
-
-    if ($conn->query($sql_associate_department) === TRUE) {
-        echo "Novo funcionário registrado e associado ao departamento com sucesso!";
-    } else {
-        echo "Erro ao associar funcionário ao departamento: " . $conn->error;
+        echo "Erro ao inserir dados dos departamentos: " . $conn->error;
     }
 } else {
-    echo "Erro ao registrar o funcionário: " . $conn->error;
+    echo "Erro ao inserir dados dos funcionários: " . $conn->error;
 }
 
 $conn->close();

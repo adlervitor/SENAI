@@ -1,5 +1,5 @@
 <?php
-//Adler Vitor Santiago B.
+// Adler Vitor Santiago B.
 $servername = "localhost";
 $username = "root";
 $password = "1234";
@@ -11,26 +11,26 @@ if ($conn->connect_error) {
     die("Conexão falhou: " . $conn->connect_error);
 }
 
-$nome_fornecedor = "Fornecedor XYZ";
-$contato_fornecedor = "FornecedorXYZ@example.com";
+// Inserir dados na tabela fornecedores
+$sql_fornecedores = "INSERT INTO fornecedores (id_fornecedor, nome, contato) VALUES 
+                    (1, 'Empresa A', 'contato@empresaA.com'),
+                    (2, 'Empresa B', 'contato@empresaB.com')";
 
-$sql_fornecedor = "INSERT INTO fornecedores (nome, contato) VALUES ('$nome_fornecedor', '$contato_fornecedor')";
+if ($conn->multi_query($sql_fornecedores) === TRUE) {
+    echo "Dados dos fornecedores inseridos com sucesso!<br>";
 
-if ($conn->query($sql_fornecedor) === TRUE) {
-    $id_fornecedor = $conn->insert_id;
+    // Inserir dados na tabela compras
+    $sql_compras = "INSERT INTO compras (id_compra, id_fornecedor, produto_comprado, quantidade) VALUES 
+                    (1, 1, 'Peças de computador', 100),
+                    (2, 2, 'Material de escritório', 500)";
 
-    $produto_comprado = "Produto ABC";
-    $quantidade_comprada = 50;
-
-    $sql_compra = "INSERT INTO compras (id_fornecedor, produto_comprado, quantidade) VALUES ('$id_fornecedor', '$produto_comprado', '$quantidade_comprada')";
-
-    if ($conn->query($sql_compra) === TRUE) {
-        echo "Novo fornecedor registrado e compra registrada com sucesso!";
+    if ($conn->multi_query($sql_compras) === TRUE) {
+        echo "Dados das compras inseridos com sucesso!";
     } else {
-        echo "Erro ao registrar a compra: " . $conn->error;
+        echo "Erro ao inserir dados das compras: " . $conn->error;
     }
 } else {
-    echo "Erro ao registrar o fornecedor: " . $conn->error;
+    echo "Erro ao inserir dados dos fornecedores: " . $conn->error;
 }
 
 $conn->close();

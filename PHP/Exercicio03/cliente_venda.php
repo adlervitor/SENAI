@@ -1,5 +1,5 @@
 <?php
-//Adler Vitor Santiago B.
+// Adler Vitor Santiago B.
 $servername = "localhost";
 $username = "root";
 $password = "1234";
@@ -10,26 +10,25 @@ if ($conn->connect_error) {
     die("Conexão falhou: " . $conn->connect_error);
 }
 
-$nome_cliente = "João";
-$email_cliente = "joao@example.com";
+// Inserindo dados na tabela clientes
+$sql_clientes = "INSERT INTO clientes (id_cliente, nome, email) VALUES 
+                (1, 'Ana', 'ana@example.com'),
+                (2, 'Pedro', 'pedro@example.com')";
 
-$sql_cliente = "INSERT INTO clientes (nome, email) VALUES ('$nome_cliente', '$email_cliente')";
+if ($conn->multi_query($sql_clientes) === TRUE) {
+    echo "Dados dos clientes inseridos com sucesso!<br>";
 
-if ($conn->query($sql_cliente) === TRUE) {
-    $id_cliente = $conn->insert_id;
+    // Inserindo dados na tabela vendas
+    $sql_venda_1 = "INSERT INTO vendas (id_venda, id_cliente, produto_vendido, valor) VALUES (1, 1, 'Celular', 1200.00)";
+    $sql_venda_2 = "INSERT INTO vendas (id_venda, id_cliente, produto_vendido, valor) VALUES (2, 2, 'Fones', 150.00)";
 
-    $produto_vendido = "Produto XYZ";
-    $valor_venda = 99.99;
-
-    $sql_venda = "INSERT INTO vendas (id_cliente, produto_vendido, valor) VALUES ('$id_cliente', '$produto_vendido', '$valor_venda')";
-
-    if ($conn->query($sql_venda) === TRUE) {
-        echo "Novo cliente registrado e venda registrada com sucesso!";
+    if ($conn->query($sql_venda_1) === TRUE && $conn->query($sql_venda_2) === TRUE) {
+        echo "Dados das vendas inseridos com sucesso!";
     } else {
-        echo "Erro ao registrar a venda: " . $conn->error;
+        echo "Erro ao inserir dados das vendas: " . $conn->error;
     }
 } else {
-    echo "Erro ao registrar o cliente: " . $conn->error;
+    echo "Erro ao inserir dados dos clientes: " . $conn->error;
 }
 
 $conn->close();

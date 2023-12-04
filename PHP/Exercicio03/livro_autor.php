@@ -1,5 +1,5 @@
 <?php
-//Adler Vitor Santiago B.
+// Adler Vitor Santiago B.
 $servername = "localhost";
 $username = "root";
 $password = "1234";
@@ -11,33 +11,26 @@ if ($conn->connect_error) {
     die("Conexão falhou: " . $conn->connect_error);
 }
 
-$titulo_livro = "Livro ABC";
-$ano_publicacao = 2022;
+// Inserir dados na tabela livros
+$sql_livros = "INSERT INTO livros (id_livro, titulo, ano_publicacao) VALUES 
+                (1, 'Aprendendo Python', 2020),
+                (2, 'Introdução à Inteligência Artificial', 2019)";
 
-$sql_livro = "INSERT INTO livros (titulo, ano_publicacao) VALUES ('$titulo_livro', '$ano_publicacao')";
+if ($conn->multi_query($sql_livros) === TRUE) {
+    echo "Dados dos livros inseridos com sucesso!<br>";
 
-if ($conn->query($sql_livro) === TRUE) {
-    $id_livro = $conn->insert_id;
+    // Inserir dados na tabela autores
+    $sql_autores = "INSERT INTO autores (id_autor, nome_autor) VALUES 
+                    (1, 'Carlos Silva'),
+                    (2, 'Ana Souza')";
 
-    $nome_autor = "Autor XYZ";
-
-    $sql_autor = "INSERT INTO autores (nome_autor) VALUES ('$nome_autor')";
-
-    if ($conn->query($sql_autor) === TRUE) {
-        $id_autor = $conn->insert_id;
-
-        $sql_associate_author = "INSERT INTO livros_autores (id_livro, id_autor) VALUES ('$id_livro', '$id_autor')";
-
-        if ($conn->query($sql_associate_author) === TRUE) {
-            echo "Novo livro registrado e autor associado ao livro com sucesso!";
-        } else {
-            echo "Erro ao associar autor ao livro: " . $conn->error;
-        }
+    if ($conn->multi_query($sql_autores) === TRUE) {
+        echo "Dados dos autores inseridos com sucesso!";
     } else {
-        echo "Erro ao adicionar detalhes do autor: " . $conn->error;
+        echo "Erro ao inserir dados dos autores: " . $conn->error;
     }
 } else {
-    echo "Erro ao registrar o livro: " . $conn->error;
+    echo "Erro ao inserir dados dos livros: " . $conn->error;
 }
 
 $conn->close();
