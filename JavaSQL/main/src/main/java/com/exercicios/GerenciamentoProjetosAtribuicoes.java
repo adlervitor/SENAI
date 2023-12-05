@@ -3,7 +3,6 @@ package com.exercicios;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class GerenciamentoProjetosAtribuicoes {
@@ -13,13 +12,6 @@ public class GerenciamentoProjetosAtribuicoes {
         String usuario = "root";
         String senha = "1234";
 
-        String nomeProjeto = "Projeto A";
-        String descricaoProjeto = "Descrição do Projeto A";
-        int idFuncionario = 1;
-
-        String sqlInserirProjeto = "INSERT INTO projetos (nome_projeto, descricao) VALUES (?, ?)";
-        String sqlAssociarFuncionarioProjeto = "INSERT INTO atribuicoes (id_projeto, id_funcionario) VALUES (?, ?)";
-
         Connection conn = null;
         PreparedStatement stmtProjeto = null;
         PreparedStatement stmtAssociarFuncionarioProjeto = null;
@@ -28,26 +20,32 @@ public class GerenciamentoProjetosAtribuicoes {
             conn = DriverManager.getConnection(url, usuario, senha);
             conn.setAutoCommit(false);
 
-            stmtProjeto = conn.prepareStatement(sqlInserirProjeto, PreparedStatement.RETURN_GENERATED_KEYS);
-            stmtProjeto.setString(1, nomeProjeto);
-            stmtProjeto.setString(2, descricaoProjeto);
+            // Inserir dados na tabela projetos
+            String sqlInserirProjeto = "INSERT INTO projetos (id_projeto, nome_projeto, descricao) VALUES (?, ?, ?)";
+            stmtProjeto = conn.prepareStatement(sqlInserirProjeto);
+            stmtProjeto.setInt(1, 1);
+            stmtProjeto.setString(2, "Sistema de Controle");
+            stmtProjeto.setString(3, "Desenvolvimento de um sistema interno");
             stmtProjeto.executeUpdate();
 
-            int idProjeto = 0;
-            ResultSet rsProjeto = stmtProjeto.getGeneratedKeys();
-            if (rsProjeto.next()) {
-                idProjeto = rsProjeto.getInt(1);
-            } else {
-                throw new SQLException("Falha ao obter o ID do projeto.");
-            }
+            stmtProjeto.setInt(1, 2);
+            stmtProjeto.setString(2, "Portal Corporativo");
+            stmtProjeto.setString(3, "Desenvolvimento de um portal para clientes");
+            stmtProjeto.executeUpdate();
 
+            // Inserir dados na tabela atribuicoes
+            String sqlAssociarFuncionarioProjeto = "INSERT INTO atribuicoes (id_projeto, id_funcionario) VALUES (?, ?)";
             stmtAssociarFuncionarioProjeto = conn.prepareStatement(sqlAssociarFuncionarioProjeto);
-            stmtAssociarFuncionarioProjeto.setInt(1, idProjeto);
-            stmtAssociarFuncionarioProjeto.setInt(2, idFuncionario);
+            stmtAssociarFuncionarioProjeto.setInt(1, 1);
+            stmtAssociarFuncionarioProjeto.setInt(2, 1);
+            stmtAssociarFuncionarioProjeto.executeUpdate();
+
+            stmtAssociarFuncionarioProjeto.setInt(1, 2);
+            stmtAssociarFuncionarioProjeto.setInt(2, 2);
             stmtAssociarFuncionarioProjeto.executeUpdate();
 
             conn.commit();
-            System.out.println("Projeto e associação de funcionário registrados com sucesso!");
+            System.out.println("Dados inseridos com sucesso!");
         } catch (SQLException e) {
             try {
                 if (conn != null) {

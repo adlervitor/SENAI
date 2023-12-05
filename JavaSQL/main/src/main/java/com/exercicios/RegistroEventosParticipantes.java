@@ -3,7 +3,6 @@ package com.exercicios;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class RegistroEventosParticipantes {
@@ -13,14 +12,6 @@ public class RegistroEventosParticipantes {
         String usuario = "root";
         String senha = "1234";
 
-        String nomeEvento = "Evento A";
-        String dataEvento = "2023-12-01"; 
-        String nomeParticipante1 = "Participante 1";
-        String nomeParticipante2 = "Participante 2";
-
-        String sqlInserirEvento = "INSERT INTO eventos (nome_evento, data) VALUES (?, ?)";
-        String sqlInserirParticipante = "INSERT INTO participantes (id_evento, nome_participante) VALUES (?, ?)";
-
         Connection conn = null;
         PreparedStatement stmtEvento = null;
         PreparedStatement stmtParticipante = null;
@@ -29,30 +20,34 @@ public class RegistroEventosParticipantes {
             conn = DriverManager.getConnection(url, usuario, senha);
             conn.setAutoCommit(false);
 
-            stmtEvento = conn.prepareStatement(sqlInserirEvento, PreparedStatement.RETURN_GENERATED_KEYS);
-            stmtEvento.setString(1, nomeEvento);
-            stmtEvento.setString(2, dataEvento);
+            // Inserir dados na tabela eventos
+            String sqlInserirEvento = "INSERT INTO eventos (id_evento, nome_evento, data) VALUES (?, ?, ?)";
+            stmtEvento = conn.prepareStatement(sqlInserirEvento);
+            stmtEvento.setInt(1, 1);
+            stmtEvento.setString(2, "Conferência de Tecnologia");
+            stmtEvento.setString(3, "2023-12-15");
             stmtEvento.executeUpdate();
 
-            int idEvento = 0;
-            ResultSet rsEvento = stmtEvento.getGeneratedKeys();
-            if (rsEvento.next()) {
-                idEvento = rsEvento.getInt(1);
-            } else {
-                throw new SQLException("Falha ao obter o ID do evento.");
-            }
+            stmtEvento.setInt(1, 2);
+            stmtEvento.setString(2, "Workshop de Marketing Digital");
+            stmtEvento.setString(3, "2023-11-20");
+            stmtEvento.executeUpdate();
 
+            // Inserir dados na tabela participantes
+            String sqlInserirParticipante = "INSERT INTO participantes (id_participante, id_evento, nome_participante) VALUES (?, ?, ?)";
             stmtParticipante = conn.prepareStatement(sqlInserirParticipante);
-            stmtParticipante.setInt(1, idEvento);
-            stmtParticipante.setString(2, nomeParticipante1);
+            stmtParticipante.setInt(1, 1);
+            stmtParticipante.setInt(2, 1);
+            stmtParticipante.setString(3, "Gabriel");
             stmtParticipante.executeUpdate();
 
-            stmtParticipante.setInt(1, idEvento);
-            stmtParticipante.setString(2, nomeParticipante2);
+            stmtParticipante.setInt(1, 2);
+            stmtParticipante.setInt(2, 2);
+            stmtParticipante.setString(3, "Sofia");
             stmtParticipante.executeUpdate();
 
             conn.commit();
-            System.out.println("Evento e participantes registrados com sucesso!");
+            System.out.println("Dados inseridos com sucesso!");
         } catch (SQLException e) {
             try {
                 if (conn != null) {
@@ -79,4 +74,3 @@ public class RegistroEventosParticipantes {
         }
     }
 }
-

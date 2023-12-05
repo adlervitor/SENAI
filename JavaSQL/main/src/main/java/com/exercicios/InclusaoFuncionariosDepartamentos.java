@@ -3,7 +3,6 @@ package com.exercicios;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class InclusaoFuncionariosDepartamentos {
@@ -12,14 +11,6 @@ public class InclusaoFuncionariosDepartamentos {
         String url = "jdbc:mysql://localhost:3306/senaidb";
         String usuario = "root";
         String senha = "1234";
-
-        String nomeFuncionario = "Funcionário A";
-        String cargoFuncionario = "Cargo X";
-        String nomeDepartamento = "Departamento Y";
-
-        String sqlInserirFuncionario = "INSERT INTO funcionarios (nome, cargo) VALUES (?, ?)";
-        String sqlInserirDepartamento = "INSERT INTO departamentos (nome_departamento) VALUES (?)";
-        String sqlAssociarFuncionarioDepartamento = "UPDATE funcionarios SET id_departamento = ? WHERE id_funcionario = ?";
 
         Connection conn = null;
         PreparedStatement stmtFuncionario = null;
@@ -30,38 +21,32 @@ public class InclusaoFuncionariosDepartamentos {
             conn = DriverManager.getConnection(url, usuario, senha);
             conn.setAutoCommit(false);
 
-            stmtFuncionario = conn.prepareStatement(sqlInserirFuncionario, PreparedStatement.RETURN_GENERATED_KEYS);
-            stmtFuncionario.setString(1, nomeFuncionario);
-            stmtFuncionario.setString(2, cargoFuncionario);
+            // Inserir dados na tabela funcionarios
+            String sqlInserirFuncionario = "INSERT INTO funcionarios (id_funcionario, nome, cargo) VALUES (?, ?, ?)";
+            stmtFuncionario = conn.prepareStatement(sqlInserirFuncionario);
+            stmtFuncionario.setInt(1, 1);
+            stmtFuncionario.setString(2, "Luiz");
+            stmtFuncionario.setString(3, "Analista");
             stmtFuncionario.executeUpdate();
 
-            int idFuncionario = 0;
-            ResultSet rsFuncionario = stmtFuncionario.getGeneratedKeys();
-            if (rsFuncionario.next()) {
-                idFuncionario = rsFuncionario.getInt(1);
-            } else {
-                throw new SQLException("Falha ao obter o ID do funcionário.");
-            }
+            stmtFuncionario.setInt(1, 2);
+            stmtFuncionario.setString(2, "Carla");
+            stmtFuncionario.setString(3, "Gerente");
+            stmtFuncionario.executeUpdate();
 
-            stmtDepartamento = conn.prepareStatement(sqlInserirDepartamento, PreparedStatement.RETURN_GENERATED_KEYS);
-            stmtDepartamento.setString(1, nomeDepartamento);
+            // Inserir dados na tabela departamentos
+            String sqlInserirDepartamento = "INSERT INTO departamentos (id_departamento, nome_departamento) VALUES (?, ?)";
+            stmtDepartamento = conn.prepareStatement(sqlInserirDepartamento);
+            stmtDepartamento.setInt(1, 1);
+            stmtDepartamento.setString(2, "TI");
             stmtDepartamento.executeUpdate();
 
-            int idDepartamento = 0;
-            ResultSet rsDepartamento = stmtDepartamento.getGeneratedKeys();
-            if (rsDepartamento.next()) {
-                idDepartamento = rsDepartamento.getInt(1);
-            } else {
-                throw new SQLException("Falha ao obter o ID do departamento.");
-            }
-
-            stmtAssociarFuncionarioDepartamento = conn.prepareStatement(sqlAssociarFuncionarioDepartamento);
-            stmtAssociarFuncionarioDepartamento.setInt(1, idDepartamento);
-            stmtAssociarFuncionarioDepartamento.setInt(2, idFuncionario);
-            stmtAssociarFuncionarioDepartamento.executeUpdate();
+            stmtDepartamento.setInt(1, 2);
+            stmtDepartamento.setString(2, "Recursos Humanos");
+            stmtDepartamento.executeUpdate();
 
             conn.commit();
-            System.out.println("Funcionário, departamento e associação registrados com sucesso!");
+            System.out.println("Dados inseridos com sucesso!");
         } catch (SQLException e) {
             try {
                 if (conn != null) {
@@ -91,4 +76,3 @@ public class InclusaoFuncionariosDepartamentos {
         }
     }
 }
-

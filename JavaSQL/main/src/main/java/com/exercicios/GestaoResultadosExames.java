@@ -3,7 +3,6 @@ package com.exercicios;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class GestaoResultadosExames {
@@ -13,14 +12,6 @@ public class GestaoResultadosExames {
         String usuario = "root";
         String senha = "1234";
 
-        String tipoExame = "Exame de Sangue";
-        String resultadoExame = "Normal";
-        String nomePaciente = "Paciente A";
-        String dataNascimento = "1990-01-01";
-
-        String sqlInserirResultadoExame = "INSERT INTO resultados_exames (tipo_exame, resultado) VALUES (?, ?)";
-        String sqlInserirPaciente = "INSERT INTO pacientes (nome_paciente, data_nascimento) VALUES (?, ?)";
-
         Connection conn = null;
         PreparedStatement stmtResultadoExame = null;
         PreparedStatement stmtPaciente = null;
@@ -29,34 +20,34 @@ public class GestaoResultadosExames {
             conn = DriverManager.getConnection(url, usuario, senha);
             conn.setAutoCommit(false);
 
-            stmtResultadoExame = conn.prepareStatement(sqlInserirResultadoExame, PreparedStatement.RETURN_GENERATED_KEYS);
-            stmtResultadoExame.setString(1, tipoExame);
-            stmtResultadoExame.setString(2, resultadoExame);
+            // Inserir dados na tabela resultados_exames
+            String sqlInserirResultadoExame = "INSERT INTO resultados_exames (id_resultado, tipo_exame, resultado) VALUES (?, ?, ?)";
+            stmtResultadoExame = conn.prepareStatement(sqlInserirResultadoExame);
+            stmtResultadoExame.setInt(1, 1);
+            stmtResultadoExame.setString(2, "Exame de Sangue");
+            stmtResultadoExame.setString(3, "Normal");
             stmtResultadoExame.executeUpdate();
 
-            int idResultadoExame = 0;
-            ResultSet rsResultadoExame = stmtResultadoExame.getGeneratedKeys();
-            if (rsResultadoExame.next()) {
-                idResultadoExame = rsResultadoExame.getInt(1);
-            } else {
-                throw new SQLException("Falha ao obter o ID do resultado do exame.");
-            }
+            stmtResultadoExame.setInt(1, 2);
+            stmtResultadoExame.setString(2, "Raio-X");
+            stmtResultadoExame.setString(3, "Fratura identificada");
+            stmtResultadoExame.executeUpdate();
 
-            stmtPaciente = conn.prepareStatement(sqlInserirPaciente, PreparedStatement.RETURN_GENERATED_KEYS);
-            stmtPaciente.setString(1, nomePaciente);
-            stmtPaciente.setString(2, dataNascimento);
+            // Inserir dados na tabela pacientes
+            String sqlInserirPaciente = "INSERT INTO pacientes (id_paciente, nome_paciente, data_nascimento) VALUES (?, ?, ?)";
+            stmtPaciente = conn.prepareStatement(sqlInserirPaciente);
+            stmtPaciente.setInt(1, 1);
+            stmtPaciente.setString(2, "Mariana");
+            stmtPaciente.setString(3, "1995-06-10");
             stmtPaciente.executeUpdate();
 
-            int idPaciente = 0;
-            ResultSet rsPaciente = stmtPaciente.getGeneratedKeys();
-            if (rsPaciente.next()) {
-                idPaciente = rsPaciente.getInt(1);
-            } else {
-                throw new SQLException("Falha ao obter o ID do paciente.");
-            }
+            stmtPaciente.setInt(1, 2);
+            stmtPaciente.setString(2, "Rafael");
+            stmtPaciente.setString(3, "1987-09-25");
+            stmtPaciente.executeUpdate();
 
             conn.commit();
-            System.out.println("Resultado de exame e paciente registrados com sucesso!");
+            System.out.println("Dados inseridos com sucesso!");
         } catch (SQLException e) {
             try {
                 if (conn != null) {

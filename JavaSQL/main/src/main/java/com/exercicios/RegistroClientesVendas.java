@@ -13,14 +13,6 @@ public class RegistroClientesVendas {
         String usuario = "root";
         String senha = "1234";
 
-        String nomeCliente = "Cliente A";
-        String emailCliente = "cliente@email.com";
-        String produtoVendido = "Produto X";
-        double valorVenda = 50.0;
-
-        String sqlInserirCliente = "INSERT INTO clientes (nome, email) VALUES (?, ?)";
-        String sqlInserirVenda = "INSERT INTO vendas (id_cliente, produto_vendido, valor) VALUES (?, ?, ?)";
-
         Connection conn = null;
         PreparedStatement stmtCliente = null;
         PreparedStatement stmtVenda = null;
@@ -29,27 +21,36 @@ public class RegistroClientesVendas {
             conn = DriverManager.getConnection(url, usuario, senha);
             conn.setAutoCommit(false);
 
-            stmtCliente = conn.prepareStatement(sqlInserirCliente, PreparedStatement.RETURN_GENERATED_KEYS);
-            stmtCliente.setString(1, nomeCliente);
-            stmtCliente.setString(2, emailCliente);
+            // Inserir dados na tabela clientes
+            String sqlInserirCliente = "INSERT INTO clientes (id_cliente, nome, email) VALUES (?, ?, ?)";
+            stmtCliente = conn.prepareStatement(sqlInserirCliente);
+            stmtCliente.setInt(1, 1);
+            stmtCliente.setString(2, "Ana");
+            stmtCliente.setString(3, "ana@example.com");
             stmtCliente.executeUpdate();
 
-            int idCliente = 0;
-            ResultSet rsCliente = stmtCliente.getGeneratedKeys();
-            if (rsCliente.next()) {
-                idCliente = rsCliente.getInt(1);
-            } else {
-                throw new SQLException("Falha ao obter o ID do cliente.");
-            }
+            stmtCliente.setInt(1, 2);
+            stmtCliente.setString(2, "Pedro");
+            stmtCliente.setString(3, "pedro@example.com");
+            stmtCliente.executeUpdate();
 
+            // Inserir dados na tabela vendas
+            String sqlInserirVenda = "INSERT INTO vendas (id_venda, id_cliente, produto_vendido, valor) VALUES (?, ?, ?, ?)";
             stmtVenda = conn.prepareStatement(sqlInserirVenda);
-            stmtVenda.setInt(1, idCliente);
-            stmtVenda.setString(2, produtoVendido);
-            stmtVenda.setDouble(3, valorVenda);
+            stmtVenda.setInt(1, 1);
+            stmtVenda.setInt(2, 1);
+            stmtVenda.setString(3, "Celular");
+            stmtVenda.setDouble(4, 1200.00);
+            stmtVenda.executeUpdate();
+
+            stmtVenda.setInt(1, 2);
+            stmtVenda.setInt(2, 2);
+            stmtVenda.setString(3, "Fones");
+            stmtVenda.setDouble(4, 150.00);
             stmtVenda.executeUpdate();
 
             conn.commit();
-            System.out.println("Cliente e venda registrados com sucesso!");
+            System.out.println("Dados inseridos com sucesso!");
         } catch (SQLException e) {
             try {
                 if (conn != null) {
@@ -76,4 +77,3 @@ public class RegistroClientesVendas {
         }
     }
 }
-

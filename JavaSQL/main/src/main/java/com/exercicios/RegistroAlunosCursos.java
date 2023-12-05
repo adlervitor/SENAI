@@ -3,7 +3,6 @@ package com.exercicios;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class RegistroAlunosCursos {
@@ -13,57 +12,42 @@ public class RegistroAlunosCursos {
         String usuario = "root";
         String senha = "1234";
 
-        String nomeAluno = "Aluno A";
-        String turmaAluno = "Turma X";
-        String nomeCurso = "Curso Y";
-        String instrutorCurso = "Instrutor Z";
-
-        String sqlInserirAluno = "INSERT INTO alunos (nome, turma) VALUES (?, ?)";
-        String sqlInserirCurso = "INSERT INTO cursos (nome_curso, instrutor) VALUES (?, ?)";
-        String sqlAssociarAlunoCurso = "INSERT INTO alunos_cursos (id_aluno, id_curso) VALUES (?, ?)";
-
         Connection conn = null;
         PreparedStatement stmtAluno = null;
         PreparedStatement stmtCurso = null;
-        PreparedStatement stmtAssociarAlunoCurso = null;
 
         try {
             conn = DriverManager.getConnection(url, usuario, senha);
             conn.setAutoCommit(false);
 
-            stmtAluno = conn.prepareStatement(sqlInserirAluno, PreparedStatement.RETURN_GENERATED_KEYS);
-            stmtAluno.setString(1, nomeAluno);
-            stmtAluno.setString(2, turmaAluno);
+            // Inserir dados na tabela alunos
+            String sqlInserirAluno = "INSERT INTO alunos (id_aluno, nome, turma) VALUES (?, ?, ?)";
+            stmtAluno = conn.prepareStatement(sqlInserirAluno);
+            stmtAluno.setInt(1, 1);
+            stmtAluno.setString(2, "Lucas");
+            stmtAluno.setString(3, "A");
             stmtAluno.executeUpdate();
 
-            int idAluno = 0;
-            ResultSet rsAluno = stmtAluno.getGeneratedKeys();
-            if (rsAluno.next()) {
-                idAluno = rsAluno.getInt(1);
-            } else {
-                throw new SQLException("Falha ao obter o ID do aluno.");
-            }
+            stmtAluno.setInt(1, 2);
+            stmtAluno.setString(2, "Julia");
+            stmtAluno.setString(3, "B");
+            stmtAluno.executeUpdate();
 
-            stmtCurso = conn.prepareStatement(sqlInserirCurso, PreparedStatement.RETURN_GENERATED_KEYS);
-            stmtCurso.setString(1, nomeCurso);
-            stmtCurso.setString(2, instrutorCurso);
+            // Inserir dados na tabela cursos
+            String sqlInserirCurso = "INSERT INTO cursos (id_curso, nome_curso, instrutor) VALUES (?, ?, ?)";
+            stmtCurso = conn.prepareStatement(sqlInserirCurso);
+            stmtCurso.setInt(1, 1);
+            stmtCurso.setString(2, "Matemática");
+            stmtCurso.setString(3, "Professor Carlos");
             stmtCurso.executeUpdate();
 
-            int idCurso = 0;
-            ResultSet rsCurso = stmtCurso.getGeneratedKeys();
-            if (rsCurso.next()) {
-                idCurso = rsCurso.getInt(1);
-            } else {
-                throw new SQLException("Falha ao obter o ID do curso.");
-            }
-
-            stmtAssociarAlunoCurso = conn.prepareStatement(sqlAssociarAlunoCurso);
-            stmtAssociarAlunoCurso.setInt(1, idAluno);
-            stmtAssociarAlunoCurso.setInt(2, idCurso);
-            stmtAssociarAlunoCurso.executeUpdate();
+            stmtCurso.setInt(1, 2);
+            stmtCurso.setString(2, "Ciências");
+            stmtCurso.setString(3, "Professora Ana");
+            stmtCurso.executeUpdate();
 
             conn.commit();
-            System.out.println("Aluno, curso e associação registrados com sucesso!");
+            System.out.println("Dados inseridos com sucesso!");
         } catch (SQLException e) {
             try {
                 if (conn != null) {
@@ -81,9 +65,6 @@ public class RegistroAlunosCursos {
                 if (stmtCurso != null) {
                     stmtCurso.close();
                 }
-                if (stmtAssociarAlunoCurso != null) {
-                    stmtAssociarAlunoCurso.close();
-                }
                 if (conn != null) {
                     conn.close();
                 }
@@ -93,4 +74,3 @@ public class RegistroAlunosCursos {
         }
     }
 }
-
